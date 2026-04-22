@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プライバシーポリシー - すぐ敬語</title>
+<style>
+  :root {
+    --ink: #1f1b16;
+    --ink-mid: #4a4640;
+    --paper: #faf7f2;
+    --accent: #8b6f3f;
+    --rule: #e9e3d5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+      "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    margin: 0;
+    padding: 24px 20px 64px;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin: 0 0 8px;
+    letter-spacing: 0.02em;
+  }
+  .updated {
+    font-size: 0.85rem;
+    color: var(--ink-mid);
+    opacity: 0.7;
+    margin: 0 0 32px;
+  }
+  h2 {
+    color: var(--accent);
+    font-size: 1.05rem;
+    margin: 32px 0 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  p {
+    margin: 0 0 12px;
+    color: var(--ink-mid);
+    white-space: pre-wrap;
+  }
+  a { color: var(--accent); }
+  footer {
+    max-width: 720px;
+    margin: 48px auto 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.8rem;
+    color: var(--ink-mid);
+    opacity: 0.7;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>プライバシーポリシー</h1>
+  <p class="updated">最終更新日：2026年4月</p>
+
+  <h2>1. はじめに</h2>
+  <p>すぐ敬語（以下「本アプリ」）は、ユーザーのプライバシーを尊重し、最小限の情報のみを取り扱うよう設計されています。本ポリシーは、本アプリが処理するデータ、その目的、送信先、保管期間について説明します。本アプリをご利用いただくことで、本ポリシーに同意したものとみなします。</p>
+
+  <h2>2. 本アプリが処理するデータ</h2>
+  <p>本アプリは以下のデータを処理します。
+
+・入力テキスト：敬語変換のためにユーザーが入力した日本語テキスト。変換処理のため、後述のクラウド関数経由でAnthropic社のClaude APIへ送信されます。本アプリ開発者のサーバーには保存されません。
+
+・匿名認証ID（UID）：本アプリは起動時に Firebase Anonymous Auth によって匿名のユーザーIDを自動発行します。このIDに氏名・メールアドレス等の個人情報は紐づきません。1日あたりの無料利用回数の管理および不正利用の検知に使用します。
+
+・端末識別子のハッシュ値：Android システムが本アプリに提供する ANDROID_ID（アプリ署名鍵に紐づくランダム文字列）を、アプリのパッケージ名および内部ソルトと結合した上で SHA-256 によりハッシュ化した値のみを、クラウド関数へ送信します。元の ANDROID_ID そのものはサーバーに送信されません。この不可逆なハッシュ値は、アプリデータ消去等による無料回数制限の回避を防止する目的でのみ使用します（GDPR 上の「仮名化データ」に相当）。
+
+・Google Play Integrity 判定結果：本アプリが正規版 APK として、改造・ルート化されていない端末で動作していることをサーバー側で検証するため、Google Play Integrity API が発行する署名付きトークンをクラウド関数へ送信します。このトークンに個人情報は含まれません。
+
+・利用回数カウンター：変換成功ごとに、匿名UIDおよび上記ハッシュ値をキーとした当日の利用回数が Firestore 上で原子的に更新されます。無料プラン制限の管理および濫用防止のためにのみ使用します。
+
+・購入トークン（課金時のみ）：プレミアムプランの購入時、Google Play Billing が発行する購入トークンが Firestore のサブスクリプション情報として匿名UIDに紐づけて保存されます。課金特典の有効性確認に使用します。
+
+・広告識別子（無料プランのみ）：Google AdMob は広告配信のために広告ID（AAID）を使用する場合があります。本アプリ開発者が AAID を直接収集することはありません。
+
+・ローカル保存データ：変換履歴、音声入力の下書き、下書きテキスト、およびプレミアム表示用のローカル設定値は、端末内の DataStore/Room にのみ保存され、外部には送信されません。</p>
+
+  <h2>3. 音声入力について</h2>
+  <p>音声入力機能は Android OS 標準の音声認識（SpeechRecognizer）を使用します。音声データおよび認識結果は本アプリ開発者のサーバーには送信されません。音声データの取扱いについては、端末にインストールされている音声認識エンジン（Google 音声認識サービス等）の提供者の規約が適用されます。録音データは本アプリ内に保存されません。</p>
+
+  <h2>4. データの利用目的</h2>
+  <p>収集した情報は以下の目的にのみ使用します。
+
+・敬語変換サービスの提供（入力テキストを Claude API へ中継）
+・無料プランの1日利用回数制限の管理（UID およびハッシュ化端末識別子ベース）
+・不正利用および濫用の検知・防止（アプリデータ消去による回数制限リセット等）
+・プレミアム購入状況の確認および課金特典の提供
+・広告配信（無料プランのみ、AdMob により実施）
+・アプリ評価依頼表示の制御（変換回数が一定数に達したとき、Google Play In-App Review API を呼び出す）</p>
+
+  <h2>5. 第三者への提供</h2>
+  <p>本アプリは以下の第三者サービスを利用します。入力テキストは、敬語変換のために必要な範囲で Anthropic へ送信されます。
+
+・Google Firebase（Anonymous Authentication / Cloud Functions / Firestore / App Check / Play Integrity）：Google LLC 提供。UID、ハッシュ化端末識別子、利用回数、購入トークンを保管するサーバー基盤。リージョン：asia-northeast1（東京）。
+
+・Anthropic（Claude API）：Anthropic PBC 提供。入力テキストの敬語変換処理に使用。Anthropic はAPI 入出力の取扱いについて独自のプライバシーポリシーを定めています。
+
+・Google AdMob：Google LLC 提供。バナー広告および動画リワード広告の配信に使用します（無料プランのみ）。動画広告を視聴いただくと、当日の無料変換回数が追加される場合があります（1日最大5本まで）。広告の視聴状況（本数カウント）はサーバー側で管理されますが、個別の広告視聴ログは保存しません。
+
+・Google Play Billing：Google LLC 提供。サブスクリプション決済の処理に使用。
+
+・Google Play In-App Review API：Google LLC 提供。アプリレビュー依頼ダイアログの表示に使用。
+
+上記以外の第三者に対して、開発者が利用者のデータを販売・提供・共有することはありません。</p>
+
+  <h2>6. データの保管期間</h2>
+  <p>・入力テキスト：開発者側に保存されません。Claude API 送信後は破棄されます（Anthropic 側の取扱いは同社ポリシーに準じます）。
+
+・匿名UIDおよび利用回数：Firestore 上で、当日の日付バケットごとに保管されます。古い日付の利用回数レコードは定期的に削除される場合があります。
+
+・ハッシュ化端末識別子：不正利用防止に必要な期間、Firestore 上の fingerprints コレクションに保管されます。
+
+・購入トークン：サブスクリプションが有効な期間、解約後の返金対応に必要な期間は保管されます。
+
+・ローカルデータ（履歴・下書き・設定）：アプリをアンインストールするか、Android 設定から「データを消去」することで完全に削除されます。</p>
+
+  <h2>7. ユーザーの権利</h2>
+  <p>・履歴・下書きの削除：アプリ内の履歴画面から個別または一括で削除できます。
+
+・サーバー上のデータ削除請求：匿名UIDに紐づく利用回数およびサブスクリプション情報の削除をご希望の場合、Google Play のアプリページより開発者へご連絡ください。ただし、アプリを使い続ける場合は新たな匿名UIDが発行されます。
+
+・広告パーソナライズのオプトアウト：Android 設定 → Google → 広告 から広告IDをリセット・削除できます。</p>
+
+  <h2>8. セキュリティ</h2>
+  <p>通信はすべて HTTPS / TLS で暗号化されます。Claude API の API キーは本アプリ内には一切含まれておらず、サーバー側（Cloud Functions）でのみ保持されます。クラウド関数は Play Integrity による端末検証を通過したリクエストのみを処理します。</p>
+
+  <h2>9. お子様のプライバシー</h2>
+  <p>本アプリは13歳未満（日本国外からご利用の場合は準拠法で定める年齢未満）のお子様を対象としていません。お子様の個人情報を意図的に収集することはありません。万一お子様のデータが送信されたと判明した場合は、速やかに削除いたします。</p>
+
+  <h2>10. ポリシーの変更</h2>
+  <p>本ポリシーは、サービス内容の変更または法令改正等により予告なく更新される場合があります。重要な変更がある場合は、アプリのアップデートまたは起動時の通知を通じてお知らせします。</p>
+
+  <h2>11. お問い合わせ</h2>
+  <p>プライバシーに関するご質問・ご要望は、Google Play の本アプリページ内「デベロッパーに連絡」よりお問い合わせください。</p>
+</main>
+<footer>© 2026 BenriLabs · <a href="./terms.html">利用規約</a></footer>
+</body>
+</html>
